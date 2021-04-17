@@ -1,0 +1,25 @@
+[Unit]
+Description=gurren server
+After=local-fs.target network.target
+
+[Service]
+Type=simple
+User=gurren
+Group=gurren
+WorkingDirectory=/opt/gurren/current
+ExecStart=/opt/gurren/current/bin/gurren foreground
+ExecStop=/opt/gurren/current/bin/gurren stop
+Environment=LANG=en_US.UTF-8
+Environment=MIX_ENV=prod
+Environment=RELEASE_MUTABLE_DIR=/var/tmp/gurren
+Environment=PORT=8080
+#Environment=CONFORM_CONF_PATH=/etc/gurren/gurren.conf
+LimitNOFILE=65536
+UMask=0027
+SyslogIdentifier=gurren
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

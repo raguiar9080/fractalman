@@ -1,0 +1,13 @@
+<h2>Show Session</h2>
+
+<ul>
+
+  <li>
+    <strong>User agent:</strong>
+    <%= @session.user_agent %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: session_path(@conn, :edit, @session) %></span>
+<span><%= link "Back", to: session_path(@conn, :index) %></span>

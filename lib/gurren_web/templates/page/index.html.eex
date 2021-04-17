@@ -1,0 +1,101 @@
+<div class="ht-tm-header">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-2">Fractal Ma<span class="vim-caret">n</span></h1>
+      <div class="lead mb-3 text-mono text-success">Rúben Aguiar</div>
+      <p class="mt-5 text-grey text-spacey">
+      Gurren is a Phoenix Server, made to learn and explore Elixir.
+      Security, Performance and Scale were main focuses.
+      As of now, Gurren provides a chat functionality alongside streaming of
+      Microphone Audio. The goal was to make a very low latency real time stream,
+      but at the moment, audio is still a bit flaky due to JS, if low levels of
+      latency are wanted.
+      Authentication is already implemented, even if it's currently only used to
+      access certain admin pages (try <a href="<%= static_path(@conn, "/users") %>">Users</a> or <a href="<%= static_path(@conn, "/sessions") %>">Sessions</a>).
+      Sessions are not yet used as part of a 2FA, but the functionality and logging
+      are there, making it possible to inspect and kill compromised sessions.
+      The server is currently on the AWS free tier, with a matching RDS Postgres DB.
+      Terraform is used to provision and deploy at the click of a button. An haproxy
+      is used on the machine to handle traffic, and SSL is enabled via
+      letsencrypt (auto renew configured).
+      </br>
+      In the future, a Unity application (<a href="https://gitlab.com/r.aguiar9080/inner-world.git">Inner World</a>) will fully connect to this Server and
+      provide p2p streaming audio capabilities on a 3D Environment.
+      </p>
+
+    </div>
+    <div class="col-md-6">
+      <div class="fractal-logo offset-md-2 col-md-10"></div>
+      <div class="offset-md-2 col-md-10">
+        <div class="text-mono">
+          <div class="col-sm-5 mx-auto">
+            <a href="https://gitlab.com/r.aguiar9080/gurren.git" data-toggle="ht-special-modal" data-target="#theme-download-modal" class="btn btn-success btn-shadow px-3 my-2 ml-0 text-left">
+              <span class="fa fa-download mr-xl-2"></span>
+              Sourcecode
+            </a>
+          </div>
+          <div class="col-sm-6 mx-auto">
+            <a href="/" data-toggle="modal" data-target="#abort-modal" class="btn btn-danger btn-shadow px-3 my-2 ml-0 ml-sm-1 text-left">
+              <span class="fa fa-close mr-xl-2"></span>
+              Kill Internet
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="messages"></div>
+
+<div class="ht-tm-codeblock">
+  <div class="ht-tm-element input-group mb-3">
+    <input id="chat-input" type="text" class="form-control" placeholder="" aria-label="Message" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary" type="button">😇</button>
+    </div>
+  </div>
+</div>
+
+<div class="row ">
+  <input class="streamDelays form-control offset-md-5 col-md-2" type="number" name="quantity" min="20" max="5000" value="100"></input>
+  <span class="streamDelaysInfo ht-tm-element text-grey text-spacey"></span>
+</div>
+</br>
+<canvas class="visualizer offset-md-2 col-md-8" width="640" height="100"></canvas>
+<div class="row">
+  <button class="startAudio offset-md-4 col-md-2 ht-tm-element btn btn-outline-primary">Start Audio</button>
+  <button class="rebootAudio col-md-2 ht-tm-element btn btn-outline-primary">Reboot Audio</button>
+
+</div>
+
+<a class="ht-tm-toggle-sidenav bottom" id="ht-tm-toggle-sidenav-external" href="/"><span class="fa fa-plus"></span></a>
+
+<div class="ht-tm-wrapper">
+  <div class="row">
+    <div class="col-xl-9">
+      <div id="ht-tm-maincolumn" class="ht-tm-maincolumn">
+        <div class="modal fade" id="abort-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="text-mono modal-body text-center p-3">
+
+                <span class="hal-9000 d-block mx-auto mb-4 mt-3"></span>
+
+                I'm sorry Dave, I'm afraid I can't do that.
+
+                <div class="text-mono mt-2">
+                  <a href="/" data-dismiss="modal" class="btn btn-dark btn-shadow my-2 ml-0 text-left mr-1">I understand</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

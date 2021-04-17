@@ -1,0 +1,2 @@
+<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
+<span><%= link "Back", to: user_path(@conn, :index), class: "nav-link" %></span>

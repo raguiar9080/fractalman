@@ -1,0 +1,26 @@
+<h2>Listing Sessions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User agent</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for session <- @sessions do %>
+    <tr>
+      <td><%= session.user_agent %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: session_path(@conn, :show, session), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: session_path(@conn, :edit, session), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: session_path(@conn, :delete, session), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Session", to: session_path(@conn, :new) %></span>
